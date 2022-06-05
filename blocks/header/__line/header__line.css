@@ -1,0 +1,19 @@
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .header__line {     
+        max-width: 650px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 425px) {
+    .header__line {     
+        max-width: 385px;
+        height: 1px;        
+    }
+}
+
+@media screen and (max-width: 424px) {
+    .header__line {     
+        max-width: 320px;
+        height: 1px;       
+    }
+}

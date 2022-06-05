@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+<body>
+    <div class="page">
+        <div class="popup popup_opened">
+            <div class="popup__overlay">                
+            </div>
+            <div class="popup__container">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <fieldset class="popup__inputs">
+                    <input class="popup__input" type="text" name="name" placeholder="Жак-Ив Кусто">
+                    <input class="popup__input" type="text" name="profession" placeholder="Исследователь океана">
+                </fieldset>
+                <fieldset class="popup__inputs">
+                    <input type="submit" class="popup__submit" value="Сохранить">
+                </fieldset>
+                <button class="popup__button">
+                    <img src="./blocks/popup/images/popup__close-icon.svg" alt="Кнопка закрыть" class="popup__close-icon">
+                </button>
+            </div>
+        </div>
+        <header class="header">
+            <img src="./blocks/header/images/header__logo.svg" alt="Логотип Место" class="header__logo">
+            <img src="./blocks/header/images/header__line.svg" alt="Прямая линия" class="header__line">
+        </header>       
+        <div class="profile">
+            <div class="profile__information">
+                <img src="./blocks/profile/images/profile__avatar.png" alt="Аватар" class="profile__image">
+                <div class="profile__info">
+                    <div class="profile__name-container">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>  
+                        <button type="button" class="profile__edit-btn">
+                            <img src="./blocks/profile/images/edit-btn.svg" class="profile__edit-icon" alt="Кнопка редактирования">
+                        </button>                      
+                    </div>                    
+                    <p class="profile__description">Исследователь океана</p>
+                </div>
+            </div>            
+            <button type="button" class="profile__button">
+                <img src="./blocks/profile/images/profile__button.svg" alt="Кнопка добавить" class="profile__btn-image">
+            </button>
+        </div>
+        <div class="places">
+            <div class="place">
+                <img src="./blocks/place/images/place1.png" alt="Замок в Карачаевске" class="place__image">
+                <div class="place__description-container">   
+                    <h2 class="place__title">Карачаевск</h2>
+                    <button class="place__like-btn"></button>
+                </div>
+            </div>
+            <div class="place">
+                <img src="./blocks/place/images/place2.png" alt="Вид на гору Эльбрус" class="place__image">
+                <div class="place__description-container">   
+                    <h2 class="place__title">Гора Эльбрус</h2>
+                    <button class="place__like-btn"></button>
+                </div>
+            </div>
+            <div class="place">
+                <img src="./blocks/place/images/place3.png" alt="Вид сверху на лес и горы" class="place__image">
+                <div class="place__description-container">   
+                    <h2 class="place__title">Домбай</h2>
+                    <button class="place__like-btn"></button>
+                </div>
+            </div>
+            <div class="place">
+                <img src="./blocks/place/images/place4.png" alt="Вид на гору Эльбрус" class="place__image">
+                <div class="place__description-container">   
+                    <h2 class="place__title">Гора Эльбрус</h2>
+                    <button class="place__like-btn"></button>
+                </div>
+            </div>
+            <div class="place">
+                <img src="./blocks/place/images/place5.png" alt="Вид сверху на лес и горы" class="place__image">
+                <div class="place__description-container">   
+                    <h2 class="place__title">Домбай</h2>
+                    <button class="place__like-btn"></button>
+                </div>
+            </div>
+            <div class="place">
+                <img src="./blocks/place/images/place6.png" alt="Замок в Карачаевске" class="place__image">
+                <div class="place__description-container">   
+                    <h2 class="place__title">Карачаево-Черкесия</h2>
+                    <button class="place__like-btn"></button>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <p class="footer__copyright">© 2022 Mesto Russia</p> 
+        </footer>
+
+
+
+
+
+
+
+
+
+
+    </div>    
+</body>
+</html>

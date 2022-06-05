@@ -1,0 +1,12 @@
+.place__like-btn {
+    background-image: url(../images/place__like-inactive.png);
+    background-color: rgba(28,28,28,0);
+    border: none;
+    width: 22px;
+    height: 19px;
+}
+
+.place__like-btn:hover {    
+    cursor: pointer;    
+    opacity: 0.5;
+}

@@ -1,0 +1,33 @@
+.places {
+    max-width: 880px;
+    margin: 0 auto;    
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: space-between;
+}
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .places {     
+        max-width: 720px;
+        justify-content: space-evenly;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 425px) {
+    .places {     
+        max-width: 385px;    
+        justify-content: center;  
+        margin-top: 36px;  
+    }
+}
+
+@media screen and (max-width: 424px) {
+    .places {     
+        max-width: 282px;    
+        justify-content: center;  
+        margin-top: 36px;  
+    }
+}

@@ -1,0 +1,10 @@
+.place__description-container {    
+    margin: 25px 15px 31px 21px;
+    max-width: 246px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;  
+    align-items: center;
+    justify-content: space-between;    
+}

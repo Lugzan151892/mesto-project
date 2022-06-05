@@ -1,0 +1,35 @@
+.profile {
+    margin: 0 auto;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: row;
+    max-width: 880px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .profile {     
+        max-width: 650px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 425px) {
+    .profile {     
+        max-width: 385px;       
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile {   
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;        
+    }
+}
+
+@media screen and (max-width: 424px) {
+    .profile {     
+        max-width: 282px;       
+    }
+}
