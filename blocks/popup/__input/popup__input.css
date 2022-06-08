@@ -7,7 +7,7 @@
     color: #000000;
     background: #FFFFFF;
     border: none;    
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     width: 358px;
     height: 27px;
 }
@@ -16,7 +16,7 @@
     margin-bottom: 30px;
 }
 
-.popup__input:last-child {
+.popup__input:nth-child(2) {
     margin-bottom: 48px;
 }
 
@@ -25,7 +25,7 @@
         width: 238px;
     }
 
-    .popup__input:last-child {
+    .popup__input:nth-child(2) {
         margin-bottom: 45px;
     }
 }
