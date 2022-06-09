@@ -1,10 +1,10 @@
 @import url(../vendor/normalize.css); 
 @import url(../vendor/fonts/fonts.css);
 @import url(../blocks/page/page.css);
+@import url(../blocks/main/main.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__window/popup__window.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__title/popup__title.css);
