@@ -9,7 +9,7 @@
 3. В дальнейшем будет добавлен функционал на Javascript
 
 ### Ссылка на проект:
-https://lugzan151892.github.io/mesto-project//index.html
+https://lugzan151892.github.io/mesto-project/
 
 #### Инструкция:
 
