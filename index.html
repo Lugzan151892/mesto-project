@@ -29,54 +29,22 @@
             </button>
         </section>
         <section class="places">
-            <article class="place">
-                <img src="./blocks/place/images/place1.png" alt="Замок в Карачаевске" class="place__image">
-                <div class="place__description-container">   
-                    <h2 class="place__title">Карачаевск</h2>
-                    <button type="button" aria-label="Кнопка нравится" class="place__like-btn"></button>
-                </div>
-            </article>
-            <article class="place">
-                <img src="./blocks/place/images/place2.png" alt="Вид на гору Эльбрус" class="place__image">
-                <div class="place__description-container">   
-                    <h2 class="place__title">Гора Эльбрус</h2>
-                    <button type="button" aria-label="Кнопка нравится" class="place__like-btn"></button>
-                </div>
-            </article>
-            <article class="place">
-                <img src="./blocks/place/images/place3.png" alt="Вид сверху на лес и горы" class="place__image">
-                <div class="place__description-container">   
-                    <h2 class="place__title">Домбай</h2>
-                    <button type="button" aria-label="Кнопка нравится" class="place__like-btn"></button>
-                </div>
-            </article>
-            <article class="place">
-                <img src="./blocks/place/images/place4.png" alt="Вид на гору Эльбрус" class="place__image">
-                <div class="place__description-container">   
-                    <h2 class="place__title">Гора Эльбрус</h2>
-                    <button type="button" aria-label="Кнопка нравится" class="place__like-btn"></button>
-                </div>
-            </article>
-            <article class="place">
-                <img src="./blocks/place/images/place5.png" alt="Вид сверху на лес и горы" class="place__image">
-                <div class="place__description-container">   
-                    <h2 class="place__title">Домбай</h2>
-                    <button type="button" aria-label="Кнопка нравится" class="place__like-btn"></button>
-                </div>
-            </article>
-            <article class="place">
-                <img src="./blocks/place/images/place6.png" alt="Замок в Карачаевске" class="place__image">
-                <div class="place__description-container">   
-                    <h2 class="place__title">Карачаево-Черкесия</h2>
-                    <button type="button" aria-label="Кнопка нравится" class="place__like-btn"></button>
-                </div>
-            </article>
+            <template id="place">
+                <article class="place">
+                    <button type="button" aria-label="Кнопка удалить" class="place__delete-btn"></button>
+                    <img src="" alt="" class="place__image">
+                    <div class="place__description-container">   
+                        <h2 class="place__title"></h2>
+                        <button type="button" aria-label="Кнопка нравится" class="place__like-btn"></button>
+                    </div>
+                </article>
+            </template>
         </section>
     </main> 
     <footer class="footer">
         <p class="footer__copyright">© 2022 Mesto Russia</p> 
     </footer>   
-    <section class="popup popup_opened">
+    <section class="popup">
         <div class="popup__window">            
             <form action="/action_page.php" method="get" name="popup-form" class="popup__form">
                 <h2 class="popup__title">Редактировать профиль</h2>
@@ -91,5 +59,30 @@
             </form>
         </div>
     </section>
+    <section class="popup-place">
+        <div class="popup-place__window">            
+            <form action="/action_page.php" method="get" name="popup-place-form" class="popup-place__form">
+                <h2 class="popup-place__title">Новое место</h2>
+                <fieldset class="popup-place__inputs">
+                    <input class="popup-place__input" type="text" id="popup-place-name" name="name" placeholder="Название">
+                    <input class="popup-place__input" type="text" id="popup-link" name="link" placeholder="Ссылка на картинку">
+                    <input type="submit" class="popup-place__submit" value="Создать">
+                </fieldset>
+                <button class="popup-place__button" aria-label="Кнопка закрыть" type="button">
+                    <img src="./blocks/popup/images/popup__close-icon.svg" alt="Кнопка закрыть" class="popup-place__close-icon">
+                </button>
+            </form>
+        </div>
+    </section>
+    <section class="popup-place-img">
+        <div class="popup-place-img__window">            
+            <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="" class="popup-place-img__image">
+            <h2 class="popup-place-img__title"></h2>
+            <button class="popup-place-img__button" aria-label="Кнопка закрыть" type="button">
+                <img src="./blocks/popup/images/popup__close-icon.svg" alt="Кнопка закрыть" class="popup-place-img__close-icon">
+            </button>
+        </div>
+    </section>
+    <script src="./script.js"></script>
 </body>
 </html>
