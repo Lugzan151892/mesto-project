@@ -44,9 +44,9 @@
     <footer class="footer">
         <p class="footer__copyright">© 2022 Mesto Russia</p> 
     </footer>   
-    <section class="popup">
+    <section class="popup popup-profile">
         <div class="popup__window">            
-            <form action="/action_page.php" method="get" name="popup-form" class="popup__form">
+            <form name="popup-form" class="popup__form">
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <fieldset class="popup__inputs">
                     <input class="popup__input" type="text" id="popup-name" name="name" placeholder="Имя">
@@ -59,27 +59,27 @@
             </form>
         </div>
     </section>
-    <section class="popup-place">
-        <div class="popup-place__window">            
-            <form action="/action_page.php" method="get" name="popup-place-form" class="popup-place__form">
-                <h2 class="popup-place__title">Новое место</h2>
-                <fieldset class="popup-place__inputs">
-                    <input class="popup-place__input" type="text" id="popup-place-name" name="name" placeholder="Название">
-                    <input class="popup-place__input" type="text" id="popup-link" name="link" placeholder="Ссылка на картинку">
-                    <input type="submit" class="popup-place__submit" value="Создать">
+    <section class="popup popup-place">
+        <div class="popup__window">            
+            <form name="popup-place-form" class="popup__form">
+                <h2 class="popup__title">Новое место</h2>
+                <fieldset class="popup__inputs">
+                    <input class="popup__input" type="text" id="popup-place-name" name="name" placeholder="Название">
+                    <input class="popup__input" type="url" id="popup-link" name="link" placeholder="Ссылка на картинку">
+                    <input type="submit" class="popup__submit" value="Создать">
                 </fieldset>
-                <button class="popup-place__button" aria-label="Кнопка закрыть" type="button">
-                    <img src="./blocks/popup/images/popup__close-icon.svg" alt="Кнопка закрыть" class="popup-place__close-icon">
+                <button class="popup__button" aria-label="Кнопка закрыть" type="button">
+                    <img src="./blocks/popup/images/popup__close-icon.svg" alt="Кнопка закрыть" class="popup__close-icon">
                 </button>
             </form>
         </div>
     </section>
-    <section class="popup-place-img">
-        <div class="popup-place-img__window">            
-            <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="" class="popup-place-img__image">
-            <h2 class="popup-place-img__title"></h2>
-            <button class="popup-place-img__button" aria-label="Кнопка закрыть" type="button">
-                <img src="./blocks/popup/images/popup__close-icon.svg" alt="Кнопка закрыть" class="popup-place-img__close-icon">
+    <section class="popup popup-image">
+        <div class="popup-image__window">            
+            <img src="" alt="" class="popup-image__image">
+            <h2 class="popup-image__title"></h2>
+            <button class="popup__button" aria-label="Кнопка закрыть" type="button">
+                <img src="./blocks/popup/images/popup__close-icon.svg" alt="Кнопка закрыть" class="popup__close-icon">
             </button>
         </div>
     </section>
