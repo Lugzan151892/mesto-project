@@ -1,9 +1,9 @@
-const profilePopup = document.querySelector('.popup'),
+const profilePopup = document.querySelector('.popup-profile'),
       placePopup = document.querySelector('.popup-place'),
       imagePopup = document.querySelector('.popup-image'),
       profilePopupCloseButton = profilePopup.querySelector('.popup__button'),
       profileEditButton = document.querySelector('.profile__edit-btn'),
-      profileFormElement = document.querySelector('.popup__form'),
+      profileFormElement = profilePopup.querySelector('.popup__form'),
       profileName = document.querySelector('.profile__name'),
       profileDescription = document.querySelector('.profile__description'),
       nameInput = document.querySelector('#popup-name'),
@@ -71,9 +71,13 @@ const createCard = (cardData) => {
   newPlaceImage.src = cardData.link;
   newPlaceImage.alt = cardData.name;
   newPlace.querySelector('.place__title').textContent = cardData.name;
-  newPlace.querySelector('.place__like-btn').addEventListener("click", function (evt){
-    evt.target.classList.toggle("place__like-btn_active");
-  });
+  const buttonLike = newPlace.querySelector('.place__like-btn');
+  buttonLike.addEventListener("click", function (){ 
+    buttonLike.classList.toggle("place__like-btn_active"); 
+  });  
+  // newPlace.querySelector('.place__like-btn').addEventListener("click", function (evt){
+  //   evt.target.classList.toggle("place__like-btn_active");
+  // });
 
   newPlaceImage.addEventListener("click", function (){
     imagePopupTitle.textContent = cardData.name;
