@@ -1,0 +1,19 @@
+{
+  "name": "mesto-project",
+  "version": "0.0.1",
+  "description": "Будущая соцсеть для фотографий и общения, полностью адаптивен под любые устройства.\r Создан при помощи:\r 1. HTML\r 2. CSS\r 3. В дальнейшем будет добавлен функционал на Javascript",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lugzan151892/mesto-project.git"
+  },
+  "author": "Denis Gukov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lugzan151892/mesto-project/issues"
+  },
+  "homepage": "https://github.com/Lugzan151892/mesto-project#readme"
+}
