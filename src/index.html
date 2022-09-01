@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
 </head>
 <body class="page">    
     <header class="header">
-        <img src="./blocks/header/images/header__logo.svg" alt="Логотип Место" class="header__logo">
+        <img src="<%=require('./blocks/header/images/header__logo.svg')%>" alt="Логотип Место" class="header__logo">
     </header>
     <main class="main">      
         <section class="profile">
             <div class="profile__information">
-                <img src="./blocks/profile/images/profile__avatar.png" alt="Аватар" class="profile__image">
+                <img src="<%=require('./blocks/profile/images/profile__avatar.png')%>" alt="Аватар" class="profile__image">
                 <div class="profile__info">
                     <div class="profile__name-container">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>  
                         <button aria-label="Кнопка редактирования" type="button" class="profile__edit-btn">
-                            <img src="./blocks/profile/images/edit-btn.svg" class="profile__edit-icon" alt="Кнопка редактирования">
+                            <img src="<%=require('./blocks/profile/images/edit-btn.svg')%>" class="profile__edit-icon" alt="Кнопка редактирования">
                         </button>                      
                     </div>                    
                     <p class="profile__description">Исследователь океана</p>
                 </div>
             </div>            
             <button type="button" aria-label="Кнопка добавить" class="profile__button">
-                <img src="./blocks/profile/images/profile__button.svg" alt="Кнопка добавить" class="profile__btn-image">
+                <img src="<%=require('./blocks/profile/images/profile__button.svg')%>" alt="Кнопка добавить" class="profile__btn-image">
             </button>
         </section>
         <section class="places">
@@ -54,7 +53,7 @@
                     <input type="submit" class="popup__submit" value="Сохранить">
                 </fieldset>
                 <button class="popup__button" aria-label="Кнопка закрыть" type="button">
-                    <img src="./blocks/popup/images/popup__close-icon.svg" alt="Кнопка закрыть" class="popup__close-icon">
+                    <img src="<%=require('./blocks/popup/images/popup__close-icon.svg')%>" alt="Кнопка закрыть" class="popup__close-icon">
                 </button>
             </form>
         </div>
@@ -69,7 +68,7 @@
                     <input type="submit" class="popup__submit" value="Создать">
                 </fieldset>
                 <button class="popup__button" aria-label="Кнопка закрыть" type="button">
-                    <img src="./blocks/popup/images/popup__close-icon.svg" alt="Кнопка закрыть" class="popup__close-icon">
+                    <img src="<%=require('./blocks/popup/images/popup__close-icon.svg')%>" alt="Кнопка закрыть" class="popup__close-icon">
                 </button>
             </form>
         </div>
@@ -79,10 +78,9 @@
             <img src="" alt="" class="popup-image__image">
             <h2 class="popup-image__title"></h2>
             <button class="popup__button" aria-label="Кнопка закрыть" type="button">
-                <img src="./blocks/popup/images/popup__close-icon.svg" alt="Кнопка закрыть" class="popup__close-icon">
+                <img src="<%=require('./blocks/popup/images/popup__close-icon.svg')%>" alt="Кнопка закрыть" class="popup__close-icon">
             </button>
         </div>
     </section>
-    <script src="./script.js"></script>
 </body>
 </html>
