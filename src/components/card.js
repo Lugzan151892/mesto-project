@@ -1,5 +1,5 @@
 import {cardsTemplate, cardsContainer, imagePopupTitle, imagePopupImage, imagePopup, initialCards} from './utils.js';
-import {openClosePopup} from './index.js';
+import {openPopup} from './index.js';
 
 const createCard = (cardData) => {
     const newPlace = cardsTemplate.querySelector('.place').cloneNode(true);
@@ -15,7 +15,7 @@ const createCard = (cardData) => {
       imagePopupTitle.textContent = cardData.name;
       imagePopupImage.alt = cardData.name;
       imagePopupImage.src = cardData.link;
-      openClosePopup(imagePopup);
+      openPopup(imagePopup);
     });
   
     const cardDeleteButton = newPlace.querySelector('.place__delete-btn');

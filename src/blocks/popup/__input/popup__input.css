@@ -12,12 +12,12 @@
     height: 27px;
 }
 
-.popup__input:first-child {
-    margin-bottom: 30px;
+#popup-about {
+    margin-top: 30px;
 }
 
-.popup__input:nth-child(2) {
-    margin-bottom: 48px;
+#popup-link {
+    margin-top: 30px;
 }
 
 @media screen and (max-width: 767px) {
