@@ -1,36 +1,65 @@
 import '../pages/index.css';
+import './card.js';
+import './modal.js';
+import './utils.js';
+import './validate.js';
 import {profileFormElement, placeFormElement, profilePopupCloseButton, placePopupCloseButton, placePopup, profilePopup, placeAddButton, placeName, placeImage, 
         imagePopupCloseButton, imagePopup, profileEditButton, nameInput, jobInput, profileName, profileDescription} from './utils.js';
 import {submitProfileForm, submitFormAddPlace} from './modal.js';
+import {enableValidation} from './validate.js';
 
-const openClosePopup = (popup) => popup.classList.toggle('popup_opened');
+function closePopupEsc (evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
+}
+
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
+}
+
+document.addEventListener('mouseup', function(e){
+  const click = e.composedPath();
+  if (click[0].className.includes('popup_opened')) {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+});
 
 profileFormElement.addEventListener('submit', submitProfileForm);
 
 placeFormElement.addEventListener('submit', submitFormAddPlace);
 
-profilePopupCloseButton.addEventListener('click', () => {
-    openClosePopup(profilePopup);   
-  });
+profilePopupCloseButton.addEventListener('click', () => closePopup(profilePopup));
   
-  profileEditButton.addEventListener('click', () => {
-    openClosePopup(profilePopup);
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileDescription.textContent;
-  });
+profileEditButton.addEventListener('click', () => {
+  openPopup(profilePopup);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileDescription.textContent;
+});
   
-  placePopupCloseButton.addEventListener('click', () => {
-    openClosePopup(placePopup);    
-  });
+placePopupCloseButton.addEventListener('click', () => closePopup(placePopup));
   
-  placeAddButton.addEventListener('click', () => {
-    placeName.value = '';
-    placeImage.value = '';
-    openClosePopup(placePopup);
-  });
+placeAddButton.addEventListener('click', () => {
+  placeName.value = '';
+  placeImage.value = '';
+  openPopup(placePopup);
+});
   
-  imagePopupCloseButton.addEventListener('click', () => {
-    openClosePopup(imagePopup);    
-  });
+imagePopupCloseButton.addEventListener('click', () => closePopup(imagePopup));
 
-  export {openClosePopup};
+enableValidation({
+  formSelector: '.popup__inputs',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+}); 
+
+export {openPopup, closePopup};

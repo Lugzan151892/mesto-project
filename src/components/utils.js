@@ -17,7 +17,8 @@ const profilePopup = document.querySelector('.popup'),
       placeAddButton = document.querySelector('.profile__button'),
       placeFormElement = placePopup.querySelector('.popup__form'),
       placeName = document.querySelector('#popup-place-name'),
-      placeImage = document.querySelector('#popup-link');
+      placeImage = document.querySelector('#popup-link'),
+      editForm = document.fonts.popupForm;
 
 const initialCards = [
         {
@@ -54,4 +55,4 @@ const initialCards = [
 
 export {initialCards, profilePopup, placePopup, imagePopup, profilePopupCloseButton, profileEditButton, profileFormElement,profileName,
     profileDescription, nameInput, jobInput, cardsTemplate, cardsContainer, imagePopupTitle, imagePopupImage, imagePopupCloseButton,
-    placePopupCloseButton, placeAddButton, placeFormElement, placeName, placeImage};
+    placePopupCloseButton, placeAddButton, placeFormElement, placeName, placeImage, editForm};
