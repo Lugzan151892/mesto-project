@@ -1,4 +1,4 @@
-import {profileName, nameInput, profileDescription, jobInput, profilePopup, placePopup, placeName, placeImage, cardsContainer} from './utils.js';
+import {profileName, nameInput, profileDescription, jobInput, profilePopup, placePopup, placeName, placeImage, cardsContainer, placeFormElement} from './utils.js';
 import {closePopup} from './index.js';
 import {addCard, createCard} from './card.js';
 
@@ -15,6 +15,7 @@ function submitFormAddPlace (evt) {
     newPlaceAdd.name = placeName.value;
     newPlaceAdd.link = placeImage.value;
     addCard(cardsContainer, createCard(newPlaceAdd));
+    placeFormElement.reset();
     closePopup(placePopup);
 };
 

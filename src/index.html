@@ -70,9 +70,10 @@
                     <input class="popup__input" type="text" id="popup-place-name" name="name" minlength="2" maxlength="40" required placeholder="Название" data-error-message=
                     "Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы" pattern="^[a-zA-Zа-яА-Я0-9- ]+$">
                     <span class="popup-place-name-error popup__input-error"></span>
-                    <input class="popup__input" type="url" id="popup-link" name="link" required placeholder="Ссылка на картинку">
+                    <input class="popup__input" data-error-message="Разрешены только латинские буквы, кириллические буквы, знаки дефиса и пробелы" 
+                    type="url" id="popup-link" name="link" required placeholder="Ссылка на картинку">
                     <span class="popup-link-error popup__input-error"></span>
-                    <input type="submit" class="popup__submit" value="Создать">
+                    <input type="submit" class="popup__submit" id="popup-place-submit" value="Создать">
                 </fieldset>
                 <button class="popup__button" aria-label="Кнопка закрыть" type="button">
                     <img src="<%=require('./blocks/popup/images/popup__close-icon.svg')%>" alt="Кнопка закрыть" class="popup__close-icon">

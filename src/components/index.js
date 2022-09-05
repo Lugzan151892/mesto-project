@@ -4,7 +4,7 @@ import './modal.js';
 import './utils.js';
 import './validate.js';
 import {profileFormElement, placeFormElement, profilePopupCloseButton, placePopupCloseButton, placePopup, profilePopup, placeAddButton, placeName, placeImage, 
-        imagePopupCloseButton, imagePopup, profileEditButton, nameInput, jobInput, profileName, profileDescription} from './utils.js';
+        imagePopupCloseButton, imagePopup, profileEditButton, nameInput, jobInput, profileName, profileDescription, placePopupSubmit} from './utils.js';
 import {submitProfileForm, submitFormAddPlace} from './modal.js';
 import {enableValidation} from './validate.js';
 
@@ -49,6 +49,8 @@ placeAddButton.addEventListener('click', () => {
   placeName.value = '';
   placeImage.value = '';
   openPopup(placePopup);
+  placePopupSubmit.setAttribute('disabled', false);
+  placePopupSubmit.classList.add('popup__submit_inactive');
 });
   
 imagePopupCloseButton.addEventListener('click', () => closePopup(imagePopup));
