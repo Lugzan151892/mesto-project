@@ -1,65 +1,18 @@
-import {profileName, nameInput, profileDescription, jobInput, profilePopup, placePopup, placeName, placeImage, cardsContainer, profileId,
-  avatarImage, profileImage, avatarPopup, profilePopupSubmit, placePopupSubmit, renderLoading, avatarPopupSubmit} from './utils.js';
-import {closePopup} from './index.js';
-import {addCard, createCard} from './card.js';
-import {sendProfileData, addNewCard, changeProfileAvatar} from './api.js';
+function closePopupEsc (evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
 
-function submitProfileForm (evt) {
-    evt.preventDefault();
-    renderLoading(true, profilePopupSubmit);
-    profileName.textContent = nameInput.value;
-    profileDescription.textContent = jobInput.value;
-    sendProfileData(nameInput.value, jobInput.value)
-    .then ((res) => {
-        console.log(res);
-    })
-    .catch((err) => {
-        console.log(err);
-      })
-    .finally(() => {
-      renderLoading(false, profilePopupSubmit)
-    });
-    closePopup(profilePopup);
-};
+const closePopup = (popup) => {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
+}
 
-function submitFormAddPlace (evt) {
-    evt.preventDefault();
-    renderLoading(true, placePopupSubmit);    
-    const newPlaceAdd = {};
-    newPlaceAdd.name = placeName.value;
-    newPlaceAdd.link = placeImage.value;
-    newPlaceAdd.likes = [];
-    newPlaceAdd.owner = {};
-    newPlaceAdd.owner._id = profileId.textContent;
-    addCard(cardsContainer, createCard(newPlaceAdd));
-    addNewCard(placeName.value, placeImage.value)
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      renderLoading(false, placePopupSubmit)
-    })
-    closePopup(placePopup);
-};
+const openPopup = (popup) => {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
+}
 
-function submitProfileAvatar (evt) {
-  evt.preventDefault();
-  renderLoading(true, avatarPopupSubmit);
-  profileImage.src = avatarImage.value;  
-  changeProfileAvatar(avatarImage.value)
-  .then((res) => {
-    console.log(res)
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  .finally(() => {
-    renderLoading(false, avatarPopupSubmit)
-  })
-  closePopup(avatarPopup);
-};
 
-export {submitFormAddPlace, submitProfileForm, submitProfileAvatar};
+export {openPopup, closePopup, closePopupEsc};

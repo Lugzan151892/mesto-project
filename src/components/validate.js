@@ -64,4 +64,18 @@ const enableValidation = (obj) => {
   });
 };
 
-export {enableValidation};
+function refreshForm (errorsArray, inputsArray) {
+  errorsArray.forEach((errorSpan) => {
+    errorSpan.textContent = '';
+  })
+  inputsArray.forEach((errorClass) => {
+    errorClass.classList.remove('popup__input_type_error');
+  })
+}
+
+function disableSubmitButton (submitButton) {
+  submitButton.setAttribute('disabled', false);
+  submitButton.classList.add('popup__submit_inactive');
+}
+
+export {enableValidation, refreshForm, disableSubmitButton};
