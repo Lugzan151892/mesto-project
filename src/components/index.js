@@ -1,12 +1,26 @@
 import '../pages/index.css';
-import './card.js';
-import './modal.js';
-import './utils.js';
-import './validate.js';
-import {profileFormElement, placeFormElement, profilePopupCloseButton, placePopupCloseButton, placePopup, profilePopup, placeAddButton, placeName, placeImage, 
-        imagePopupCloseButton, imagePopup, profileEditButton, nameInput, jobInput, profileName, profileDescription, placePopupSubmit} from './utils.js';
-import {submitProfileForm, submitFormAddPlace} from './modal.js';
+
+import {profileFormElement, placeFormElement, profilePopupCloseButton, placePopupCloseButton, placePopup, profilePopup, placeAddButton, placeName, placeImage,
+        avatarPopup, imagePopupCloseButton, imagePopup, profileEditButton, nameInput, jobInput, profileName, profileDescription, profileImage, placePopupSubmit,
+        profileId, avatarPopupCloseButton, avatarFormElement, profileImageEditButton} from './utils.js';
+import {submitProfileForm, submitFormAddPlace, submitProfileAvatar} from './modal.js';
 import {enableValidation} from './validate.js';
+import {getUserData, getCards} from './api.js';
+
+const editProfileData = () => {
+  getUserData ()
+  .then((res) => {
+    profileName.textContent = res.name;
+    profileDescription.textContent = res.about;
+    profileImage.src = res.avatar;
+    profileId.textContent = res._id;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
+
+editProfileData();
 
 function closePopupEsc (evt) {
   if (evt.key === 'Escape') {
@@ -23,6 +37,8 @@ const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
 }
+
+console.log(getCards());
 
 document.addEventListener('mouseup', function(e){
   const click = e.composedPath();
@@ -52,8 +68,18 @@ placeAddButton.addEventListener('click', () => {
   placePopupSubmit.setAttribute('disabled', false);
   placePopupSubmit.classList.add('popup__submit_inactive');
 });
+
+profileImageEditButton.addEventListener('click', () => {
+  openPopup(avatarPopup);
+});
+avatarPopupCloseButton.addEventListener('click', () => closePopup(avatarPopup));
   
 imagePopupCloseButton.addEventListener('click', () => closePopup(imagePopup));
+
+avatarFormElement.addEventListener('submit', submitProfileAvatar);
+
+console.log(profileImage.src);
+console.log(avatarFormElement);
 
 enableValidation({
   formSelector: '.popup__inputs',
