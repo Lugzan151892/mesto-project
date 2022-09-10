@@ -22,23 +22,7 @@ const editProfileData = () => {
   });
 }
 
-let id;
-
-function isMyId (compare) {
-  getUserData()
-  .then((data) => {
-    id = data._id;
-  })
-
-  if (compare === id) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-getUserData()
-.then(res => console.log(res))
+editProfileData();
 
 function checkLikeOnCard (boolean, cardData, likeInput) {
   if (boolean) {
@@ -71,8 +55,6 @@ function deleteYourCard (cardData) {
     console.log(err);
   });
 }
-
-editProfileData();
 
 const addCard = (container, cardElement) => {
   container.prepend(cardElement);
@@ -193,4 +175,4 @@ enableValidation({
 
 renderingCards();
 
-export {addCard, addCardOnDom, editProfileData, enableValidation, renderingCards, checkLikeOnCard, deleteYourCard, isMyId};
+export {addCard, addCardOnDom, editProfileData, enableValidation, renderingCards, checkLikeOnCard, deleteYourCard};
