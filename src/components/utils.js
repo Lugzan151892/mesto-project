@@ -28,6 +28,8 @@ const profilePopup = document.querySelector('.popup'),
       placePopupSubmit = document.querySelector('#popup-place-submit'),
       profilePopupSubmit = document.querySelector('#popup-profile-submit'),
       avatarPopupSubmit = document.querySelector('#popup-avatar-submit'),
+      errorsCollection = document.querySelectorAll('.popup__input-error'),
+      inputsCollection = document.querySelectorAll('.popup__input'),
       editForm = document.fonts.popupForm;
 
 const config = {
@@ -39,15 +41,17 @@ const config = {
 }
 
 function renderLoading (isLoading, submitButton) {
-  const defaultText = submitButton.textContent;
+  const defaultText = 'Сохранить';
+  const loadingText = 'Сохранение ...';
   if (isLoading) {
-    submitButton.textContent = 'Сохранение ...';
+    submitButton.value = loadingText;
   } else {
-    submitButton.textContent = defaultText;
+    submitButton.value = defaultText;
   }
 }
 
 export {profilePopup, placePopup, imagePopup, profilePopupCloseButton, profileEditButton, profileFormElement, profileName,
     profileDescription, nameInput, jobInput, cardsTemplate, cardsContainer, imagePopupTitle, imagePopupImage, imagePopupCloseButton,
     placePopupCloseButton, placeAddButton, placeFormElement, placeName, placeImage, editForm, placePopupSubmit, profileImage, config,
-    profileId, avatarPopup, avatarPopupCloseButton, avatarImage, avatarFormElement, profilePopupSubmit, renderLoading, avatarPopupSubmit, profileImageEditButton};
+    profileId, avatarPopup, avatarPopupCloseButton, avatarImage, avatarFormElement, profilePopupSubmit, renderLoading, avatarPopupSubmit, profileImageEditButton,
+    errorsCollection, inputsCollection};
