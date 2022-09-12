@@ -6,7 +6,7 @@ import {profilePopup, placePopup, imagePopup, profilePopupCloseButton, profileEd
   profileImageEditButton, errorsCollection, inputsCollection} from './utils.js';
 import {openPopup, closePopup} from './modal.js';
 import {enableValidation, refreshForm, disableSubmitButton} from './validate.js';
-import {getUserData, getCards, addNewCard, likeCard, unlikeCard, deleteCard} from './api.js';
+import {getUserData, getCards, addNewCard, likeCard, unlikeCard, deleteCard, sendProfileData} from './api.js';
 import {createCard} from './card.js';
 
 const editProfileData = () => {
@@ -16,6 +16,7 @@ const editProfileData = () => {
     profileDescription.textContent = res.about;
     profileImage.src = res.avatar;
     profileId.textContent = res._id;
+    renderInitialCards();
   })
   .catch((err) => {
     console.log(err);
@@ -24,7 +25,7 @@ const editProfileData = () => {
 
 editProfileData();
 
-function checkLikeOnCard (boolean, cardData, likeInput) {
+const checkLikeOnCard = (boolean, cardData, likeInput) => {
   if (boolean) {
     likeCard(cardData._id)
     .then((res) => {
@@ -46,7 +47,7 @@ function checkLikeOnCard (boolean, cardData, likeInput) {
   }
 };
 
-function deleteYourCard (cardData) {
+const deleteYourCard = (cardData) => {
   deleteCard(cardData._id)
   .then((res) => {
     console.log(res);
@@ -56,23 +57,30 @@ function deleteYourCard (cardData) {
   });
 }
 
-const addCard = (container, cardElement) => {
+const prependCard = (container, cardElement) => {
   container.prepend(cardElement);
 };
 
-const addCardOnDom = (container, cardElement) => {
+const appendCard = (container, cardElement) => {
   container.append(cardElement);
 };
 
-const renderingCards = () => { 
+const renderInitialCards = () => { 
   getCards()
   .then((res) => {
-    res.forEach(item => addCardOnDom(cardsContainer, createCard(item)));
+    res.forEach(item => appendCard(cardsContainer, createCard(item, checkLikeOnCard, deleteYourCard, handlerOpenImage)));
   })
   .catch((err) => {
     console.log(err);
   });
 };
+
+const handlerOpenImage = (title, image, card, popup) => {
+  title.textContent = card.name;
+  image.alt = card.name;
+  image.src = card.link;
+  openPopup(popup);
+}
 
 function submitProfileForm (evt) {
   evt.preventDefault();
@@ -94,7 +102,7 @@ function submitProfileForm (evt) {
 
 function submitFormAddPlace (evt) {
   evt.preventDefault();
-  renderLoading(true, placePopupSubmit);    
+  renderLoading(true, placePopupSubmit); 
   addNewCard(placeName.value, placeImage.value)
   .then((res) => {
     return res;
@@ -103,7 +111,7 @@ function submitFormAddPlace (evt) {
     const newPlaceAdd = {};
     newPlaceAdd.name = placeName.value;
     newPlaceAdd.link = placeImage.value;
-    addCard(cardsContainer, createCard(res));
+    prependCard(cardsContainer, createCard(res, checkLikeOnCard, deleteYourCard, handlerOpenImage));
     closePopup(placePopup);
   })
   .catch((err) => {
@@ -173,6 +181,4 @@ enableValidation({
   errorClass: 'popup__input-error_active'
 });
 
-renderingCards();
-
-export {addCard, addCardOnDom, editProfileData, enableValidation, renderingCards, checkLikeOnCard, deleteYourCard};
+export {editProfileData, enableValidation, renderInitialCards, checkLikeOnCard, deleteYourCard, handlerOpenImage};
