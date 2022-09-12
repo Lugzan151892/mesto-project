@@ -14,5 +14,12 @@ const openPopup = (popup) => {
   document.addEventListener('keydown', closePopupEsc);
 }
 
+document.addEventListener('mouseup', function(e){
+  const click = e.composedPath();
+  if (click[0].className.includes('popup_opened')) {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+});
+
 
 export {openPopup, closePopup, closePopupEsc};
