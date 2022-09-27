@@ -1,3 +1,31 @@
+// enableValidation({
+//   formSelector: '.popup__inputs',
+//   inputSelector: '.popup__input',
+//   submitButtonSelector: '.popup__submit',
+//   inactiveButtonClass: 'popup__submit_inactive',
+//   inputErrorClass: 'popup__input_type_error',
+//   errorClass: 'popup__input-error_active'
+// });
+
+class FormValidator {
+  constructor (data) {
+    this.formSelector = data.formSelector;
+    this.inputSelector = data.inputSelector;
+    this.submitButtonSelector = data.submitButtonSelector;
+    this.inactiveButtonClass = data.inactiveButtonClass;
+    this.inputErrorClass = data.inputErrorClass;
+    this.errorClass = data.errorClass;
+  }
+
+  _disableSubmitButton (submitButton) {
+    submitButton.setAttribute('disabled', false);
+    submitButton.classList.add('popup__submit_inactive');
+  }
+
+
+
+}
+
 const showInputError = (formElement, inputElement, errorMessage, obj) => {
   const formError = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(obj.inputErrorClass);

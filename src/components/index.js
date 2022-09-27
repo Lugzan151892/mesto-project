@@ -6,11 +6,21 @@ import {profilePopup, placePopup, imagePopup, profilePopupCloseButton, profileEd
   profileImageEditButton, errorsCollection, inputsCollection} from './utils.js';
 import {openPopup, closePopup} from './modal.js';
 import {enableValidation, refreshForm, disableSubmitButton} from './validate.js';
-import {getUserData, getCards, addNewCard, likeCard, unlikeCard, deleteCard, sendProfileData} from './api.js';
-import {createCard} from './card.js';
+import {getUserData, getCards, addNewCard, likeCard, unlikeCard, deleteCard, sendProfileData, Api} from './api.js';
+import {Card} from './card.js';
+
+
+const api = new Api({
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-14',
+  headers: {
+    authorization: '0536b3c2-5810-4220-9c51-ca725c65cff7',
+    'Content-Type': 'application/json'
+  }
+});
+
 
 const editProfileData = () => {
-  getUserData ()
+  api.getUserData ()
   .then((res) => {
     profileName.textContent = res.name;
     profileDescription.textContent = res.about;
@@ -27,7 +37,7 @@ editProfileData();
 
 const checkLikeOnCard = (boolean, cardData, likeInput) => {
   if (boolean) {
-    likeCard(cardData._id)
+    api.likeCard(cardData._id)
     .then((res) => {
       likeInput.textContent = res.likes.length;
       console.log(res);
@@ -36,7 +46,7 @@ const checkLikeOnCard = (boolean, cardData, likeInput) => {
       console.log(err);
     });
   } else {
-    unlikeCard(cardData._id)
+    api.unlikeCard(cardData._id)
     .then((res) => {
       likeInput.textContent = res.likes.length;
       console.log(res);
@@ -48,7 +58,7 @@ const checkLikeOnCard = (boolean, cardData, likeInput) => {
 };
 
 const deleteYourCard = (cardData) => {
-  deleteCard(cardData._id)
+  api.deleteCard(cardData._id)
   .then((res) => {
     console.log(res);
     })
@@ -66,13 +76,18 @@ const appendCard = (container, cardElement) => {
 };
 
 const renderInitialCards = () => { 
-  getCards()
+  api.getCards()  
   .then((res) => {
-    res.forEach(item => appendCard(cardsContainer, createCard(item, checkLikeOnCard, deleteYourCard, handlerOpenImage)));
+    res.forEach((item) => {
+      const card = new Card(item, '.places__template', checkLikeOnCard, handlerOpenImage, deleteYourCard);
+      const cardElement = card.generate();
+      appendCard(cardsContainer, cardElement);
+      // appendCard(cardsContainer, createCard(item, checkLikeOnCard, deleteYourCard, handlerOpenImage)));
+    })
   })
   .catch((err) => {
     console.log(err);
-  });
+  })
 };
 
 const handlerOpenImage = (title, image, card, popup) => {
@@ -85,7 +100,7 @@ const handlerOpenImage = (title, image, card, popup) => {
 function submitProfileForm (evt) {
   evt.preventDefault();
   renderLoading(true, profilePopupSubmit);
-  sendProfileData(nameInput.value, jobInput.value)
+  api.sendProfileData(nameInput.value, jobInput.value)
   .then ((res) => {
       profileName.textContent = nameInput.value;
       profileDescription.textContent = jobInput.value;
@@ -103,7 +118,7 @@ function submitProfileForm (evt) {
 function submitFormAddPlace (evt) {
   evt.preventDefault();
   renderLoading(true, placePopupSubmit); 
-  addNewCard(placeName.value, placeImage.value)
+  api.addNewCard(placeName.value, placeImage.value)
   .then((res) => {
     return res;
   })
@@ -122,7 +137,7 @@ function submitFormAddPlace (evt) {
 function submitProfileAvatar (evt) {
   evt.preventDefault();
   renderLoading(true, avatarPopupSubmit);
-  changeProfileAvatar(avatarImage.value)
+  api.changeProfileAvatar(avatarImage.value)
   .then((res) => {
     profileImage.src = avatarImage.value; 
     console.log(res);
