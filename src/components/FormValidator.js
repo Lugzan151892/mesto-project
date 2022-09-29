@@ -162,4 +162,4 @@ function disableSubmitButton (submitButton) {
   submitButton.classList.add('popup__submit_inactive');
 }
 
-export {enableValidation, refreshForm, disableSubmitButton};
+export {FormValidator, refreshForm, disableSubmitButton};

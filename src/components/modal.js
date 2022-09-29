@@ -4,15 +4,15 @@ function closePopupEsc (evt) {
   }
 }
 
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupEsc);
-}
+// const closePopup = (popup) => {
+//   popup.classList.remove('popup_opened');
+//   document.removeEventListener('keydown', closePopupEsc);
+// }
 
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupEsc);
-}
+// const openPopup = (popup) => {
+//   popup.classList.add('popup_opened');
+//   document.addEventListener('keydown', closePopupEsc);
+// }
 
 document.addEventListener('mouseup', function(e){
   const click = e.composedPath();
@@ -22,4 +22,4 @@ document.addEventListener('mouseup', function(e){
 });
 
 
-export {openPopup, closePopup, closePopupEsc};
+export {closePopupEsc};

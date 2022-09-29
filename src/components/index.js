@@ -3,24 +3,18 @@ import '../pages/index.css';
 import {profilePopup, placePopup, imagePopup, profilePopupCloseButton, profileEditButton, profileFormElement, profileName,
   profileDescription, nameInput, jobInput, cardsContainer, imagePopupCloseButton, placePopupCloseButton, placeAddButton, placeFormElement, placeName, placeImage,
   placePopupSubmit, profileImage, profileId, avatarPopup, avatarPopupCloseButton, avatarImage, avatarFormElement, profilePopupSubmit, renderLoading, avatarPopupSubmit,
-  profileImageEditButton, errorsCollection, inputsCollection} from './utils.js';
-import {openPopup, closePopup} from './modal.js';
-import {enableValidation, refreshForm, disableSubmitButton} from './validate.js';
-import {getUserData, getCards, addNewCard, likeCard, unlikeCard, deleteCard, sendProfileData, Api} from './api.js';
-import {Card} from './card.js';
+  profileImageEditButton, errorsCollection, inputsCollection, config} from './utils.js';
+import {FormValidator, refreshForm, disableSubmitButton} from './FormValidator.js';
+import {Api} from './Api.js';
+import {Popup, PopupWithForm, PopupWithImage} from './Popup.js';
+import {Card} from './Card.js';
 
 
-const api = new Api({
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-14',
-  headers: {
-    authorization: '0536b3c2-5810-4220-9c51-ca725c65cff7',
-    'Content-Type': 'application/json'
-  }
-});
+const api = new Api(config);
 
 
 const editProfileData = () => {
-  api.getUserData ()
+  api.getUserData()
   .then((res) => {
     profileName.textContent = res.name;
     profileDescription.textContent = res.about;
@@ -90,30 +84,29 @@ const renderInitialCards = () => {
   })
 };
 
-const handlerOpenImage = (title, image, card, popup) => {
-  title.textContent = card.name;
-  image.alt = card.name;
-  image.src = card.link;
-  openPopup(popup);
+const handlerOpenImage = (card) => {
+  const popupImage = new PopupWithImage('.popup-image', card.link, card.name);
+  popupImage.open();
+  popupImage.setEventListeners();
 }
 
-function submitProfileForm (evt) {
-  evt.preventDefault();
-  renderLoading(true, profilePopupSubmit);
-  api.sendProfileData(nameInput.value, jobInput.value)
-  .then ((res) => {
-      profileName.textContent = nameInput.value;
-      profileDescription.textContent = jobInput.value;
-      console.log(res);
-      closePopup(profilePopup);
-  })
-  .catch((err) => {
-      console.log(err);
-    })
-  .finally(() => {
-    renderLoading(false, profilePopupSubmit)
-  });
-};
+// function submitProfileForm (evt) {
+//   evt.preventDefault();
+//   renderLoading(true, profilePopupSubmit);
+//   api.sendProfileData(nameInput.value, jobInput.value)
+//   .then ((res) => {
+//       profileName.textContent = nameInput.value;
+//       profileDescription.textContent = jobInput.value;
+//       console.log(res);
+//       closePopup(profilePopup);
+//   })
+//   .catch((err) => {
+//       console.log(err);
+//     })
+//   .finally(() => {
+//     renderLoading(false, profilePopupSubmit)
+//   });
+// };
 
 function submitFormAddPlace (evt) {
   evt.preventDefault();
@@ -151,21 +144,30 @@ function submitProfileAvatar (evt) {
   })
 };
 
-profileFormElement.addEventListener('submit', submitProfileForm);
-
-placeFormElement.addEventListener('submit', submitFormAddPlace);
-
-profilePopupCloseButton.addEventListener('click', () => closePopup(profilePopup));
-  
 profileEditButton.addEventListener('click', () => {
-  refreshForm(errorsCollection, inputsCollection);
-  renderLoading(false, profilePopupSubmit);
-  openPopup(profilePopup);
+  const popup = new PopupWithForm('.popup-profile', function() {
+      renderLoading(true, profilePopupSubmit);
+      api.sendProfileData(nameInput.value, jobInput.value)
+      .then ((res) => {
+          profileName.textContent = nameInput.value;
+          profileDescription.textContent = jobInput.value;
+          console.log(res);
+          popup.close();
+      })
+      .catch((err) => {
+          console.log(err);
+        })
+      .finally(() => {
+        renderLoading(false, profilePopupSubmit)
+      });
+  })
+  // refreshForm(errorsCollection, inputsCollection);
+  // renderLoading(false, profilePopupSubmit);
+  popup.open();
+  popup.setEventListeners();
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 });
-  
-placePopupCloseButton.addEventListener('click', () => closePopup(placePopup));
   
 placeAddButton.addEventListener('click', () => {
   refreshForm(errorsCollection, inputsCollection);
@@ -182,18 +184,16 @@ profileImageEditButton.addEventListener('click', () => {
   openPopup(avatarPopup);
 });
 avatarPopupCloseButton.addEventListener('click', () => closePopup(avatarPopup));
-  
-imagePopupCloseButton.addEventListener('click', () => closePopup(imagePopup));
 
 avatarFormElement.addEventListener('submit', submitProfileAvatar);
 
-enableValidation({
-  formSelector: '.popup__inputs',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_inactive',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-});
+// enableValidation({
+//   formSelector: '.popup__inputs',
+//   inputSelector: '.popup__input',
+//   submitButtonSelector: '.popup__submit',
+//   inactiveButtonClass: 'popup__submit_inactive',
+//   inputErrorClass: 'popup__input_type_error',
+//   errorClass: 'popup__input-error_active'
+// });
 
-export {editProfileData, enableValidation, renderInitialCards, checkLikeOnCard, deleteYourCard, handlerOpenImage};
+export {editProfileData, renderInitialCards, checkLikeOnCard, deleteYourCard, handlerOpenImage};

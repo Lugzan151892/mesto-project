@@ -16,7 +16,7 @@ class Card {
     this._handlerDeleteButton = handlerDeleteButton;
   }
 
-  _setEventListeners() {  
+  _setEventListeners = () => {  
     this._element.querySelector('.place__like-btn').addEventListener("click", function (evt){
       evt.target.classList.toggle("place__like-btn_active");
       if (evt.target.classList.contains('place__like-btn_active')) {        
@@ -27,7 +27,7 @@ class Card {
     });
 
     this._element.querySelector('.place__image').addEventListener("click", () => {
-      this._handlerOpenImage(imagePopupTitle, imagePopupImage, this._cardData, imagePopup);      
+      this._handlerOpenImage(this._cardData);      
     });
 
     this._element.querySelector('.place__delete-btn').addEventListener("click", () => {
